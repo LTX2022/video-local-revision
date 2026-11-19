@@ -2,7 +2,7 @@
 
 面向已有视频的局部修订 Skill。根据原片、参考素材和时间要求，协助处理灯光、标识、立体部件或屏幕内容的定点修改。屏幕可整块换画，也可只换手机画面上的文字、数字或图标，同时保留原界面和随镜头变化的反光。
 
-实际制作方法取决于素材、可用软件和任务要求。本 Skill 提供工作方法、案例和技术检查工具，不是一键自动完成视频修复的软件；长镜头、强运动模糊、频繁遮挡或复杂材质的效果需要针对具体素材验证。
+实际制作方法取决于素材、可用软件和任务要求。本 Skill 提供制作方法、验收指南和技术检查工具，不是一键自动完成视频修复的软件；长镜头、强运动模糊、频繁遮挡或复杂材质的效果需要针对具体素材验证。
 
 ## 安装
 
@@ -43,9 +43,6 @@ python3 scripts/media_check.py compare "/素材/原片.mov" "/素材/成片.mov"
 
 # 按明确约定检查 1080p 预览
 python3 scripts/media_check.py compare "/素材/原片.mov" "/素材/预览.mp4" --size 1920x1080 --video-codec h264
-
-# 使用包内示例检查工具环境
-python3 scripts/media_check.py inspect examples/pv5-screen-before-after.mp4 --decode --timeout 30
 ```
 
 对原片和成片执行 `compare` 后，可查看 `technical_match` 和逐项 `findings`。默认核对源规格，包括声道数与采样率。指定尺寸、编码或音频目标时，按目标比较对应字段。详细选项见[工具用法](video-local-revision/references/tools.md)。
@@ -53,14 +50,6 @@ python3 scripts/media_check.py inspect examples/pv5-screen-before-after.mp4 --de
 需要查具体一帧时，可用[局部对照工具](video-local-revision/references/tools.md#局部对照)输出原速并排视频、原尺寸截图和帧号表。输入原片或上次确认版，以及需要核对的新成片。
 
 技术检查通过不等于视觉验收。画面贴合、遮挡、闪烁和整体连续性需要实际查看视频；未观看或未检查的项目应明确说明。
-
-## 历史案例
-
-`examples/` 包含三段左右对照短片，分别展示车灯、电子后视镜和电视画面修改。它们经过缩小和重新编码，用于理解观察重点，不能替代原分辨率成片验收，也不能证明其他素材或模型的效果。见[案例阅读说明](video-local-revision/examples/阅读说明.md)。
-
-[PV4 手机数字案例](video-local-revision/references/pv4-phone-digits.md)以文字说明少量元素替换、强反光下的局部跟踪与帧间复核；可从[屏幕制作专题](video-local-revision/references/screen-replacement.md)直接选用适合当前素材的做法。
-
-[手机屏幕练习](video-local-revision/examples/phone-practice/任务.md)包含一段原创原片、替换参考和明确的制作要求，可作为更换模型或工具时的同题验证。
 
 ## 目录结构
 
@@ -72,6 +61,5 @@ python3 scripts/media_check.py inspect examples/pv5-screen-before-after.mp4 --de
     ├── SKILL.md                 # Skill 入口
     ├── agents/                  # 环境配置
     ├── references/              # 专题、验收和工具用法
-    ├── scripts/                 # 技术检查及局部对照
-    └── examples/                # 历史对照短片及手机练习
+    └── scripts/                 # 技术检查及局部对照
 ```

@@ -20,9 +20,6 @@ python3 scripts/media_check.py compare "/绝对路径/原片.mov" "/绝对路径
 
 # 加做全部音视频流的完整解码检查，不重新编码
 python3 scripts/media_check.py compare "/绝对路径/原片.mov" "/绝对路径/成片.mov" --decode --timeout 300
-
-# 用包内短片确认工具环境可用
-python3 scripts/media_check.py inspect examples/pv5-screen-before-after.mp4 --decode --timeout 30
 ```
 
 `--timeout` 是每一次外部工具调用的最长秒数，默认 300；一次 compare 可包含多次调用。扫描帧数也会读取整段媒体，长文件先估算成本。普通修改不需要对所有历史版本重复扫描。
@@ -56,7 +53,7 @@ python3 scripts/media_check.py inspect examples/pv5-screen-before-after.mp4 --de
 `scripts/compare_region.py` 使用 Python 3、ffprobe 和带 libx264 的 ffmpeg，读取两个同尺寸版本。左侧可选原片或上次确认版，右侧放本次成片。对照原片检查贴合、运动和光影，对照上次确认版检查已认可的区域与帧段。两份输入应对齐到同一个剪辑起点。脚本按各自第一帧归零后的逐帧显示时间和帧序校验，同一时点若对不上会报错。
 
 ```sh
-python3 scripts/compare_region.py "/绝对路径/原片.mov" "/绝对路径/成片.mov" --start 1.25 --end 1.75 --roi 335,95,230,154 --frame 36 --out "/临时目录/局部对照"
+python3 scripts/compare_region.py "/绝对路径/原片.mov" "/绝对路径/成片.mov" --start 2 --end 3 --roi 240,120,320,180 --out "/临时目录/局部对照"
 ```
 
 输出目录须为新目录，父目录须已存在。`--start` 含起点，`--end` 不含终点，单位为秒。`--roi` 用解码画面的左上角 x、y、宽、高，省略时取整帧。对于带旋转元数据的视频，坐标以编码方向为准。`--frame` 是从第一帧开始的零基帧号，缺省为区间内首帧。工具扫描完整视频的帧时间，长文件按需要使用。
