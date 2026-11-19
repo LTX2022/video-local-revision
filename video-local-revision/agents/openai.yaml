@@ -1,0 +1,4 @@
+interface:
+  display_name: "视频局部修订"
+  short_description: "局部修改视频中的灯光、标识、物体和屏幕，按素材选方法并核对连续画面"
+  default_prompt: "请使用 $video-local-revision，根据原片、参考和最新要求完成局部视频修订，并验证贴合与时序。"
